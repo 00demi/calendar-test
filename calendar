@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Calendar</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body">
+            <!-- Calendar content will go here -->
+        </tbody>
+    </table>
+    
+    <!-- Event Modal -->
+    <div id="eventModal" style="display: none;">
+        <h2>Add Event</h2>
+        <label for="eventTitle">Title:</label>
+        <input type="text" id="eventTitle">
+        <button onclick="addEvent()">Add Event</button>
+    </div>
+    
+    <script>
+        // JavaScript code for rendering a simple calendar and adding events
+        const calendarBody = document.getElementById('calendar-body');
+        const eventModal = document.getElementById('eventModal');
+        let selectedDate;
+
+        function generateCalendar() {
+            // Your logic to generate the calendar here
+        }
+
+        function addEvent() {
+            const eventTitle = document.getElementById('eventTitle').value;
+            if (eventTitle) {
+                // Create an event for the selected date
+                const event = document.createElement('div');
+                event.textContent = eventTitle;
+                calendarBody.querySelector(`[data-date="${selectedDate}"]`).appendChild(event);
+
+                // Clear the input and close the modal
+                document.getElementById('eventTitle').value = '';
+                eventModal.style.display = 'none';
+            }
+        }
+
+        function openEventModal(date) {
+            selectedDate = date;
+            eventModal.style.display = 'block';
+        }
+
+        generateCalendar(); // Call this function to generate the calendar initially
+    </script>
+</body>
+</html>
